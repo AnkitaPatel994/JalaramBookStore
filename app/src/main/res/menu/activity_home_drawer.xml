@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_cart"
+            android:icon="@drawable/ic_shopping_cart_black_24dp"
+            android:title="Cart" />
+        <item
+            android:id="@+id/nav_wishlist"
+            android:icon="@drawable/ic_wishlist"
+            android:title="WishList" />
+        <item
+            android:id="@+id/nav_order"
+            android:icon="@drawable/ic_order"
+            android:title="Order" />
+
+    </group>
+
+    <item android:title="Quick Links"
+        android:id="@+id/nvQuickLinks">
+        <menu>
+            <item
+                android:id="@+id/nav_website"
+                android:icon="@drawable/ic_earth"
+                android:title="Website" />
+            <item
+                android:id="@+id/nav_aboutus"
+                android:icon="@drawable/ic_about"
+                android:title="About us" />
+            <item
+                android:id="@+id/nav_contactus"
+                android:icon="@drawable/ic_contactus"
+                android:title="Contact us" />
+            <item
+                android:id="@+id/nav_terms"
+                android:icon="@drawable/ic_terms"
+                android:title="Legal Policy" />
+        </menu>
+    </item>
+
+    <item android:title="Social Media Links"
+        android:id="@+id/nvSocialMediaLinks">
+        <menu>
+            <item
+                android:id="@+id/nav_facebook"
+                android:icon="@drawable/ic_facebook"
+                android:title="Facebook" />
+            <item
+                android:id="@+id/nav_instagram"
+                android:icon="@drawable/ic_instagram"
+                android:title="Instagram" />
+            <item
+                android:id="@+id/nav_pinterest"
+                android:icon="@drawable/ic_pinterest"
+                android:title="Pinterest" />
+            <item
+                android:id="@+id/nav_youtube"
+                android:icon="@drawable/ic_youtube"
+                android:title="Youtube" />
+        </menu>
+    </item>
+
+    <group android:id="@+id/r">
+        <item
+            android:id="@+id/nav_rate"
+            android:icon="@drawable/ic_rate"
+            android:title="Rate App" />
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@drawable/ic_share"
+            android:title="Share App" />
+    </group>
+
+    <item android:title="© Design &amp; Develop by Iteration Technology"
+        android:id="@+id/nvSize">
+
+    </item>
+
+</menu>

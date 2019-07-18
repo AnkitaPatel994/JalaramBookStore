@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activity.LegalActivity"
+    android:orientation="vertical"
+    android:paddingTop="30dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    tools:showIn="@layout/app_bar_legal">
+
+    <TextView
+        android:id="@+id/txtRefundPolicy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Refund &amp; Cancellation Policy"
+        android:padding="10dp"
+        android:background="@drawable/textbox"/>
+
+    <TextView
+        android:id="@+id/txtShippingPolicy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Shipping Policy"
+        android:padding="10dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/textbox"/>
+
+    <TextView
+        android:id="@+id/txtPrivacyPolicy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Privacy Policy"
+        android:padding="10dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/textbox"/>
+
+    <TextView
+        android:id="@+id/txtTC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Terms and Conditions"
+        android:padding="10dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/textbox"/>
+
+    <TextView
+        android:id="@+id/txtReturnPolicy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Return Policy"
+        android:padding="10dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/textbox"/>
+
+</LinearLayout>

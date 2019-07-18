@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activity.ShippingPolicyActivity"
+    android:orientation="vertical"
+    tools:showIn="@layout/activity_shipping_policy">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="30dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:text="Dev Kids Wonder ships its products to almost all parts of India. Orders placed will be shipped within 48* hrs. We ship on all days except Sunday and National Holidays.\n" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:text="@string/SP1"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:text="For orders equal to or above Rs. 700 (Excluding COD charges, Shipping charges, Taxes or value reduced after application of coupons or any other offer), in which additional charges are applicable, the Rs. 69 shipping charge will be added to the shipping charges for all orders below or Equal Rs. 700 (with exclusions as above).\n" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:text="The shipping charge applicable per quantity of the product can be checked by entering your pin code details on the product pages and the total shipping charge applicable on the order will be the sum of the charges for all chargeable product(s) in your order (+ Rs. 69 for orders below or Equal Rs. 700). The order level charge will be visible to you in the cart as well as when you enter the shipping address while you are checking out with your order.\n" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:text="These shipping charges applicable are not refundable in the case of return/cancellation of the product or the order.\n" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:text="The shipping charges can be modified by Dev Kids Wonder at any point without prior intimation. The new charges would reflect on the product page as well as in the checkout flow.\n" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:text="Every once in a while, Dev Kids Wonder brings out various offers in an attempt to satisfy customers. Various offers could be introduced for a limited span of time that enable free shipping of goods, subject to the fulfilment of the terms and conditions attached to the offer.\n" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:text="@string/SP2" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:text="The delivery date displayed while placing the order i.e. on the Product Details, Cart, Checkout and Order Confirmation page and in the order confirmation email are tentative. It may change once the order is shipped. Post shipment of the order, an Estimated Delivery Date will be displayed in the 'Order Details' under 'My Account ' section which will help you to keep a track of the shipment status of your order.\n" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:text="Dev Kids Wonder ensures to provide a delightful customer experience by delivering the products as per the Estimated Delivery Date communicated as above, however, at times there might be unexpected delays in the delivery of your order due to unavoidable and undetermined logistics challenges beyond our control for which Dev Kids Wonder is not liable and would request its users to cooperate as Dev Kids Wonder continuously tries to nought such instances. Also, Dev Kids Wonder reserves the right to cancel your order at its sole discretion in cases where it takes longer than usual delivery time or the shipment is physically untraceable and refund the amount paid for cancelled product(s) in your Dev Kids Wonder wallet.\n" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:text="@string/SP3" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:text="@string/SP4" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:text="@string/SP5" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:text="@string/SP6" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:text="@string/SP7" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
