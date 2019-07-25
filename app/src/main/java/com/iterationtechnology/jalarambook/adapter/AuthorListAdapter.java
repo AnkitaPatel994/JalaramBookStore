@@ -67,7 +67,7 @@ public class AuthorListAdapter extends RecyclerView.Adapter<AuthorListAdapter.Vi
 
     @Override
     public int getItemCount() {
-        return authorListArray.size();
+        return 10;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

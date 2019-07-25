@@ -92,6 +92,8 @@ public class MobileOTPActivity extends AppCompatActivity {
                             else
                             {
                                 Log.d("message",""+message);
+                                Toast.makeText(MobileOTPActivity.this, ""+message, Toast.LENGTH_SHORT).show();
+                                finish();
                             }
                         }
 

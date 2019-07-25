@@ -24,6 +24,6 @@
     <color name="colorBtnBuy">#FF4081</color>
     <color name="colortxt">#DADADA</color>
     <color name="colorTeal">#008080</color>
-    <color name="colorPEACH">#fbd0d3</color>
-    <color name="colorllBg">#d2e6f9</color>
+    <color name="colorPEACH">#ffebcc</color>
+    <color name="colorllBg">#e6f5ff</color>
 </resources>

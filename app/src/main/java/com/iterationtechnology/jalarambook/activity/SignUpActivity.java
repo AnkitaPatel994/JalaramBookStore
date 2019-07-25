@@ -96,13 +96,19 @@ public class SignUpActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(Call<Message> call, Response<Message> response) {
                                 dialog.dismiss();
-                                String Status = response.body().getStatus();
+                                String status = response.body().getStatus();
                                 String message = response.body().getMessage();
-                                if (Status.equals("1"))
+                                if (status.equals("1"))
                                 {
                                     Log.d("message",""+message);
+                                    Toast.makeText(SignUpActivity.this,""+message,Toast.LENGTH_SHORT).show();
                                     Intent i = new Intent(SignUpActivity.this,SignInActivity.class);
                                     startActivity(i);
+                                }
+                                else if(status.equals("2"))
+                                {
+                                    Log.d("message",""+message);
+                                    Toast.makeText(SignUpActivity.this,""+message,Toast.LENGTH_SHORT).show();
                                 }
                                 else
                                 {

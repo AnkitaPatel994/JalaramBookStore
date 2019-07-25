@@ -68,7 +68,7 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
 
     @Override
     public int getItemCount() {
-        return categoryListArray.size();
+        return 6;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

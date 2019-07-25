@@ -48,8 +48,8 @@ public class ResetActivity extends AppCompatActivity {
         txtResetNewPassword =(EditText) findViewById(R.id.txtResetNewPassword);
         txtResetConformPassword =(EditText) findViewById(R.id.txtResetConformPassword);
 
-        awesomeValidation.addValidation(this, R.id.txtResetNewPassword, "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})", R.string.Psw);
-        awesomeValidation.addValidation(this, R.id.txtResetConformPassword, "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})", R.string.Psw);
+        //awesomeValidation.addValidation(this, R.id.txtResetNewPassword, "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})", R.string.Psw);
+        //awesomeValidation.addValidation(this, R.id.txtResetConformPassword, "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})", R.string.Psw);
 
         btnRePswLink =(Button)findViewById(R.id.btnRePswLink);
         btnRePswLink.setOnClickListener(new View.OnClickListener() {

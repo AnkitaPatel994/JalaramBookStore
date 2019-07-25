@@ -99,6 +99,7 @@ public class SignInActivity extends AppCompatActivity {
                                 if(status.equals("1"))
                                 {
                                     Log.d("message",""+message);
+                                    Toast.makeText(SignInActivity.this, ""+message, Toast.LENGTH_SHORT).show();
                                     session.createLoginSession(UserId,UserName,UserEmail);
                                     Intent i = new Intent(getApplicationContext(), HomeActivity.class);
                                     startActivity(i);
@@ -107,6 +108,7 @@ public class SignInActivity extends AppCompatActivity {
                                 else
                                 {
                                     Log.d("message",""+message);
+                                    Toast.makeText(SignInActivity.this, ""+message, Toast.LENGTH_SHORT).show();
                                     uname.setText("");
                                     password.setText("");
                                 }
