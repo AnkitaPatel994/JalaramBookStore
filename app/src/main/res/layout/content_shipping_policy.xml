@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
-                android:text="Dev Kids Wonder ships its products to almost all parts of India. Orders placed will be shipped within 48* hrs. We ship on all days except Sunday and National Holidays.\n" />
+                android:text="Jalaram Book Store ships its products to almost all parts of India. Orders placed will be shipped within 48* hrs. We ship on all days except Sunday and National Holidays.\n" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -57,13 +57,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
-                android:text="The shipping charges can be modified by Dev Kids Wonder at any point without prior intimation. The new charges would reflect on the product page as well as in the checkout flow.\n" />
+                android:text="The shipping charges can be modified by Jalaram Book Store at any point without prior intimation. The new charges would reflect on the product page as well as in the checkout flow.\n" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
-                android:text="Every once in a while, Dev Kids Wonder brings out various offers in an attempt to satisfy customers. Various offers could be introduced for a limited span of time that enable free shipping of goods, subject to the fulfilment of the terms and conditions attached to the offer.\n" />
+                android:text="Every once in a while, Jalaram Book Store brings out various offers in an attempt to satisfy customers. Various offers could be introduced for a limited span of time that enable free shipping of goods, subject to the fulfilment of the terms and conditions attached to the offer.\n" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -81,7 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
-                android:text="Dev Kids Wonder ensures to provide a delightful customer experience by delivering the products as per the Estimated Delivery Date communicated as above, however, at times there might be unexpected delays in the delivery of your order due to unavoidable and undetermined logistics challenges beyond our control for which Dev Kids Wonder is not liable and would request its users to cooperate as Dev Kids Wonder continuously tries to nought such instances. Also, Dev Kids Wonder reserves the right to cancel your order at its sole discretion in cases where it takes longer than usual delivery time or the shipment is physically untraceable and refund the amount paid for cancelled product(s) in your Dev Kids Wonder wallet.\n" />
+                android:text="Jalaram Book Store ensures to provide a delightful customer experience by delivering the products as per the Estimated Delivery Date communicated as above, however, at times there might be unexpected delays in the delivery of your order due to unavoidable and undetermined logistics challenges beyond our control for which Jalaram Book Store is not liable and would request its users to cooperate as Jalaram Book Store continuously tries to nought such instances. Also, Jalaram Book Store reserves the right to cancel your order at its sole discretion in cases where it takes longer than usual delivery time or the shipment is physically untraceable and refund the amount paid for cancelled product(s) in your Jalaram Book Store wallet.\n" />
 
             <TextView
                 android:layout_width="match_parent"
