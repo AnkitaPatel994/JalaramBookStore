@@ -6,6 +6,7 @@
     android:gravity="center"
     android:background="#6F000000"
     android:padding="40dp"
+    android:theme="@style/AppTheme"
     android:id="@+id/llEditDialog">
 
     <LinearLayout
