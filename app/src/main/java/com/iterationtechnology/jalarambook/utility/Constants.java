@@ -6,8 +6,8 @@ public class Constants {
     public static final String PARAMETER_EQUALS = "=";
     public static final String TRANS_URL = "https://secure.ccavenue.com/transaction/initTrans";
 
-    public static final String MARCHANT_ID = "221375";
-    public static final String ACCESS_CODE = "AVPY85GF79AJ59YPJA";
+    public static final String MARCHANT_ID = "225634";
+    public static final String ACCESS_CODE = "AVYM86GG57BH20MYHB";
     public static final String CURRENCEY = "INR";
 
     public static final String REDIRECT_URL = "http://jalarambookstore.com/json_android/payment/ccavResponseHandler.php";
