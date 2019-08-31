@@ -61,6 +61,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         final String pro_oprice = productListArray.get(position).getPro_oprice();
         final String pro_discount = productListArray.get(position).getPro_discount();
         final String pro_price = productListArray.get(position).getPro_price();
+        final String pro_weight = productListArray.get(position).getPro_weight();
         final String pro_desc = productListArray.get(position).getPro_desc();
         final String pro_quantity = productListArray.get(position).getPro_quantity();
         final String pro_date = productListArray.get(position).getPro_date();
@@ -113,6 +114,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
                 i.putExtra("pro_oprice",pro_oprice);
                 i.putExtra("pro_discount",pro_discount);
                 i.putExtra("pro_price",pro_price);
+                i.putExtra("weight",pro_weight);
                 i.putExtra("pro_desc",pro_desc);
                 i.putExtra("pro_quantity",pro_quantity);
                 i.putExtra("pro_date",pro_date);

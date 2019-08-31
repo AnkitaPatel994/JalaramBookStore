@@ -32,6 +32,8 @@ public class Cart {
     private String cart_pro_quantity;
     @SerializedName("pro_date")
     private String pro_date;
+    @SerializedName("weight")
+    private String pro_weight;
     @SerializedName("rating")
     private String rating;
     @SerializedName("product_img")
@@ -141,6 +143,14 @@ public class Cart {
 
     public void setPro_date(String pro_date) {
         this.pro_date = pro_date;
+    }
+
+    public String getPro_weight() {
+        return pro_weight;
+    }
+
+    public void setPro_weight(String pro_weight) {
+        this.pro_weight = pro_weight;
     }
 
     public String getRating() {

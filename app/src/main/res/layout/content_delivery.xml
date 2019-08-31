@@ -262,17 +262,10 @@
                 android:gravity="center"
                 android:paddingLeft="20sp"
                 android:paddingRight="40dp"
+                android:layout_marginBottom="16dp"
                 android:text="Safe and secure payment 100% Authentic Products"
                 android:textAllCaps="false"
                 android:textSize="18sp" />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginBottom="16dp"
-                android:layout_marginTop="8dp"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/kids_and_baby_shopping" />
 
         </LinearLayout>
     </ScrollView>

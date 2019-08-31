@@ -131,8 +131,6 @@ public class CategoryListActivity extends AppCompatActivity
         RecyclerView.LayoutManager manager = new GridLayoutManager(getApplicationContext(),1);
         rvAllCategoryList.setLayoutManager(manager);
 
-
-
         Call<CategoryList> categoryListCall = productDataService.getCategoryData();
         categoryListCall.enqueue(new Callback<CategoryList>() {
             @Override

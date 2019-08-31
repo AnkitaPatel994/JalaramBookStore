@@ -50,6 +50,7 @@ public class SearchProductListAdapter extends RecyclerView.Adapter<SearchProduct
         final String pro_oprice = searchProductListArray.get(position).getPro_oprice();
         final String pro_discount = searchProductListArray.get(position).getPro_discount();
         final String pro_price = searchProductListArray.get(position).getPro_price();
+        final String pro_weight = searchProductListArray.get(position).getPro_weight();
         final String pro_desc = searchProductListArray.get(position).getPro_desc();
         final String pro_quantity = searchProductListArray.get(position).getPro_quantity();
         final String pro_date = searchProductListArray.get(position).getPro_date();
@@ -71,6 +72,7 @@ public class SearchProductListAdapter extends RecyclerView.Adapter<SearchProduct
                 i.putExtra("pro_oprice",pro_oprice);
                 i.putExtra("pro_discount",pro_discount);
                 i.putExtra("pro_price",pro_price);
+                i.putExtra("weight",pro_weight);
                 i.putExtra("pro_desc",pro_desc);
                 i.putExtra("pro_quantity",pro_quantity);
                 i.putExtra("pro_date",pro_date);

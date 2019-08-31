@@ -75,7 +75,8 @@ public interface GetProductDataService {
                                     @Field("pro_id") String pro_id,
                                     @Field("pro_quantity") String pro_quantity,
                                     @Field("pro_price") String pro_price,
-                                    @Field("cart_size_name") String cart_size_name);
+                                    @Field("cart_size_name") String cart_size_name,
+                                    @Field("weight") String weight);
 
     @FormUrlEncoded
     @POST("json_android/insert_recent_view_prop.php")

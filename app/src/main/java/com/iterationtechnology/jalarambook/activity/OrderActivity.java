@@ -41,7 +41,7 @@ public class OrderActivity extends AppCompatActivity {
     String user_id,TotalCartPrice,ShippingPrice,coupon_code,discount_rate,rs,PaymentMethod,user_email;
     TextView txtConPrice,txtConShippingPrice,txtConShippingCouponPrice,txtConTotalAmount,txtChange;
     RadioGroup rgPaymentMethod;
-    RadioButton rbCashonDelivery,rbOnlinePayment;/*,rbCreditCard,rbDebitCard;*/
+    RadioButton rbOnlinePayment;/*rbCashonDelivery,rbCreditCard,rbDebitCard;*/
     Button btnContinuesOrder;
     GetProductDataService productDataService;
     SessionManager session;
@@ -92,7 +92,7 @@ public class OrderActivity extends AppCompatActivity {
         final LinearLayout llChange = (LinearLayout) findViewById(R.id.llChange);
         LinearLayout llCouponcode = (LinearLayout) findViewById(R.id.llCouponcode);
         rgPaymentMethod = (RadioGroup)findViewById(R.id.rgPaymentMethod);
-        rbCashonDelivery = (RadioButton) findViewById(R.id.rbCashonDelivery);
+        //rbCashonDelivery = (RadioButton) findViewById(R.id.rbCashonDelivery);
         rbOnlinePayment = (RadioButton) findViewById(R.id.rbOnlinePayment);
         /*rbCreditCard = (RadioButton) findViewById(R.id.rbCreditCard);
         rbDebitCard = (RadioButton) findViewById(R.id.rbDebitCard);*/
@@ -111,9 +111,9 @@ public class OrderActivity extends AppCompatActivity {
         txtConShippingPrice.setText(ShippingPrice);
         txtConShippingCouponPrice.setText(discount_rate);
 
-        PaymentMethod = "Cash on Delivery";
-        change = 100;
-        txtChange.setText("100");
+        PaymentMethod = "online";
+        change = 0;
+        txtChange.setText("0");
         amount = ((Integer.parseInt(TotalCartPrice)+Integer.parseInt(ShippingPrice))-Integer.parseInt(discount_rate))+change;
         txtConTotalAmount.setText(rs+amount);
         rgPaymentMethod.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -121,14 +121,14 @@ public class OrderActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId)
                 {
-                    case R.id.rbCashonDelivery:
+                    /*case R.id.rbCashonDelivery:
                         PaymentMethod = "Cash on Delivery";
                         change = 100;
                         txtChange.setText("100");
                         amount = ((Integer.parseInt(TotalCartPrice)+Integer.parseInt(ShippingPrice))-Integer.parseInt(discount_rate))+change;
                         txtConTotalAmount.setText(rs+amount);
                         llChange.setVisibility(View.VISIBLE);
-                        break;
+                        break;*/
                     case R.id.rbOnlinePayment:
                         PaymentMethod = "online";
                         change = 0;
@@ -169,6 +169,7 @@ public class OrderActivity extends AppCompatActivity {
 
                 /*for (int i = 0;i<OrderProIdArray.size();i++)
                 {*/
+
                 final String customer_id = user_id;
                 String pro_id = "";
                 for (String ss : OrderProIdArray)
@@ -189,6 +190,7 @@ public class OrderActivity extends AppCompatActivity {
                         pro_quantity += "," + ss;
                     }
                 }
+
                 String shipping_method = ShippingPrice;
                 String payment_method = PaymentMethod;
                 String order_size = "";
@@ -214,6 +216,7 @@ public class OrderActivity extends AppCompatActivity {
 
                 String cod_charge = String.valueOf(change);
                 Log.d("order_pro",""+pro_id+"--"+order_price);
+                Log.d("order_pr", "" + pro_id + "===" + pro_quantity + "===" + order_size + "===" + order_price);
 
                 String coupon_discount = discount_rate;
                 String total = String.valueOf(amount);
@@ -232,11 +235,12 @@ public class OrderActivity extends AppCompatActivity {
                     intent.putExtra(AvenuesParams.ORDER_ID, ServiceUtility.chkNull(randomNum + "").toString().trim());
                     intent.putExtra(AvenuesParams.CURRENCY, ServiceUtility.chkNull(Constants.CURRENCEY).toString().trim());
                     intent.putExtra(AvenuesParams.AMOUNT, ServiceUtility.chkNull(total).toString().trim());
-                    /*intent.putExtra(AvenuesParams.AMOUNT, ServiceUtility.chkNull("1").toString().trim());*/
+                    //intent.putExtra(AvenuesParams.AMOUNT, ServiceUtility.chkNull("1").toString().trim());
                     intent.putExtra(AvenuesParams.REDIRECT_URL, ServiceUtility.chkNull(Constants.REDIRECT_URL).toString().trim());
                     intent.putExtra(AvenuesParams.CANCEL_URL, ServiceUtility.chkNull(Constants.CANCEL_URL).toString().trim());
                     intent.putExtra(AvenuesParams.RSA_KEY_URL, ServiceUtility.chkNull(Constants.RSA_KEY_URL).toString().trim());
                     startActivityForResult(intent, 1);
+
                 }
 
             }
@@ -249,57 +253,54 @@ public class OrderActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         // check if the request code is same as what is passed  here it is 2
         if (resultCode == 1) {
-//            String status = data.getStringExtra("transStatus");
-//            if (status.equals("Success")) {
-                final String customer_id = user_id;
-                String pro_id = "";
-                for (String ss : OrderProIdArray) {
-                    if (pro_id == "") {
-                        pro_id += ss;
-                    } else {
-                        pro_id += "," + ss;
-                    }
+            final String customer_id = user_id;
+            String pro_id = "";
+            for (String ss : OrderProIdArray) {
+                if (pro_id == "") {
+                    pro_id += ss;
+                } else {
+                    pro_id += "," + ss;
                 }
-
-                String pro_quantity = "";
-                for (String ss : OrderProQtyArray) {
-                    if (pro_quantity == "") {
-                        pro_quantity += ss;
-                    } else {
-                        pro_quantity += "," + ss;
-                    }
-                }
-                String shipping_method = ShippingPrice;
-                String payment_method = PaymentMethod;
-                String order_size = "";
-                for (String ss : OrderProSizeArray) {
-                    if (order_size == "") {
-                        order_size += ss;
-                    } else {
-                        order_size += "," + ss;
-                    }
-                }
-
-                String order_price = "";
-                for (String ss : OrderProPriceArray) {
-                    if (order_price == "") {
-                        order_price += ss;
-                    } else {
-                        order_price += "," + ss;
-                    }
-                }
-                String order_total = TotalCartPrice;
-                String cod_charge = String.valueOf(change);
-
-                Log.d("order_pr", "" + pro_id + "===" + pro_quantity + "===" + order_size + "===" + order_price);
-
-                String coupon_discount = discount_rate;
-                String total = String.valueOf(amount);
-
-                dialog.show();
-                InsertOrder(customer_id, user_email, pro_id, pro_quantity, shipping_method, payment_method, order_size, order_price, order_total, coupon_code, coupon_discount, cod_charge, total);
             }
- //       }
+
+            String pro_quantity = "";
+            for (String ss : OrderProQtyArray) {
+                if (pro_quantity == "") {
+                    pro_quantity += ss;
+                } else {
+                    pro_quantity += "," + ss;
+                }
+            }
+            String shipping_method = ShippingPrice;
+            String payment_method = PaymentMethod;
+            String order_size = "";
+            for (String ss : OrderProSizeArray) {
+                if (order_size == "") {
+                    order_size += ss;
+                } else {
+                    order_size += "," + ss;
+                }
+            }
+
+            String order_price = "";
+            for (String ss : OrderProPriceArray) {
+                if (order_price == "") {
+                    order_price += ss;
+                } else {
+                    order_price += "," + ss;
+                }
+            }
+            String order_total = TotalCartPrice;
+            String cod_charge = String.valueOf(change);
+
+            Log.d("order_pr", "" + pro_id + "===" + pro_quantity + "===" + order_size + "===" + order_price);
+
+            String coupon_discount = discount_rate;
+            String total = String.valueOf(amount);
+
+            dialog.show();
+            InsertOrder(customer_id, user_email, pro_id, pro_quantity, shipping_method, payment_method, order_size, order_price, order_total, coupon_code, coupon_discount, cod_charge, total);
+        }
     }
 
     private void InsertOrder(String customer_id, String user_email, String pro_id, String pro_quantity, String shipping_method, String payment_method, String order_size, String order_price, String order_total, String coupon_code, String coupon_discount, String cod_charge, String total) {

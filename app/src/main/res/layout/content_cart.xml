@@ -60,9 +60,27 @@
                         android:textSize="17sp" />
 
                     <TextView
+                        android:id="@+id/txtCartProWeight"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="1.5"
+                        android:gravity="right"
+                        android:text="2.2"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:text=" W"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.8"
                         android:gravity="right"
                         android:text="@string/RS"
                         android:textColor="@color/colorBlack"

@@ -22,6 +22,8 @@ public class Product {
     private String pro_discount;
     @SerializedName("pro_price")
     private String pro_price;
+    @SerializedName("pro_weight")
+    private String pro_weight;
     @SerializedName("pro_desc")
     private String pro_desc;
     @SerializedName("pro_quantity")
@@ -103,6 +105,14 @@ public class Product {
 
     public void setPro_price(String pro_price) {
         this.pro_price = pro_price;
+    }
+
+    public String getPro_weight() {
+        return pro_weight;
+    }
+
+    public void setPro_weight(String pro_weight) {
+        this.pro_weight = pro_weight;
     }
 
     public String getPro_desc() {

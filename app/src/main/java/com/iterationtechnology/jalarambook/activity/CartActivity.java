@@ -59,7 +59,7 @@ public class CartActivity extends AppCompatActivity
     RecyclerView rvCart;
     String user_id,rs;
     LinearLayout llCartEmpty,llCartProductList;
-    TextView txtCartPrice,txtShippingPrice,txtTotalAmount;
+    TextView txtCartPrice,txtCartProWeight,txtShippingPrice,txtTotalAmount;
     Button btnPlaceOrder;
     ArrayList<Cart> cartProductListArray = new ArrayList<>();
     GetProductDataService productDataService;
@@ -190,6 +190,7 @@ public class CartActivity extends AppCompatActivity
         });
 
         txtCartPrice = (TextView)findViewById(R.id.txtCartPrice);
+        txtCartProWeight = (TextView)findViewById(R.id.txtCartProWeight);
         txtShippingPrice = (TextView)findViewById(R.id.txtShippingPrice);
         txtTotalAmount = (TextView)findViewById(R.id.txtTotalAmount);
 
@@ -478,6 +479,7 @@ public class CartActivity extends AppCompatActivity
             final String pro_quantity = cartProductListArray.get(position).getPro_quantity();
             final String cart_pro_quantity = cartProductListArray.get(position).getCart_pro_quantity();
             final String pro_date = cartProductListArray.get(position).getPro_date();
+            final String pro_weight = cartProductListArray.get(position).getPro_weight();
             final String rating = cartProductListArray.get(position).getRating();
             final String product_img = cartProductListArray.get(position).getProduct_img();
 
@@ -493,6 +495,7 @@ public class CartActivity extends AppCompatActivity
             }
 
             viewHolder.txtTitle.setText(pro_title);
+            viewHolder.txtProWeight.setText(pro_weight +" W");
             viewHolder.txtSizeCart.setText(Size_name);
 
             if (size_price.equals(""))
@@ -678,6 +681,7 @@ public class CartActivity extends AppCompatActivity
                     i.putExtra("pro_oprice",pro_oprice);
                     i.putExtra("pro_discount",pro_discount);
                     i.putExtra("pro_price",pro_price);
+                    i.putExtra("weight",pro_weight);
                     i.putExtra("pro_desc",pro_desc);
                     i.putExtra("pro_quantity",pro_quantity);
                     i.putExtra("pro_date",pro_date);
@@ -696,7 +700,7 @@ public class CartActivity extends AppCompatActivity
         public class ViewHolder extends RecyclerView.ViewHolder {
 
             Button btnRemove,btnWishlist;
-            TextView txtTitle,txtProductPrice,txtCuttedPrice,txtProductOff,txtSizeCart,txtCartQty;
+            TextView txtTitle,txtProductPrice,txtCuttedPrice,txtProductOff,txtSizeCart,txtCartQty,txtProWeight;
             ImageView img_product;
             LinearLayout llCartMinus,llCartPlus;
 
@@ -711,6 +715,7 @@ public class CartActivity extends AppCompatActivity
                 txtCuttedPrice = (TextView)itemView.findViewById(R.id.txtCuttedPrice);
                 txtProductOff = (TextView)itemView.findViewById(R.id.txtProductOff);
                 txtCartQty = (TextView)itemView.findViewById(R.id.txtCartQty);
+                txtProWeight = (TextView)itemView.findViewById(R.id.txtProWeight);
                 btnRemove = (Button) itemView.findViewById(R.id.btnRemove);
                 btnWishlist = (Button) itemView.findViewById(R.id.btnWishlist);
                 llCartMinus = (LinearLayout) itemView.findViewById(R.id.llCartMinus);
@@ -749,16 +754,11 @@ public class CartActivity extends AppCompatActivity
             @Override
             public void onResponse(Call<CartTotal> call, Response<CartTotal> response) {
                 String cart_total = response.body().getCart_total();
-                String ShippingPrice;
+                String cart_total_weight = response.body().getCart_total_weight();
+                String ShippingPrice = response.body().getShippingprice();
+
                 txtCartPrice.setText(cart_total);
-                if(Integer.parseInt(cart_total) <= 700)
-                {
-                    ShippingPrice = "69";
-                }
-                else
-                {
-                    ShippingPrice = "00";
-                }
+                txtCartProWeight.setText(cart_total_weight);
                 txtShippingPrice.setText(ShippingPrice);
                 int amount = Integer.parseInt(cart_total)+Integer.parseInt(ShippingPrice);
                 txtTotalAmount.setText(rs+amount);

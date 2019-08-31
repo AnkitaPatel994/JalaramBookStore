@@ -68,7 +68,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
     LinearLayout llPDWishlist,llPDPSizeChart,llPDPSize,llRating;
     RecyclerView rvPDAllView,rvPDInterestedProductList,rvPDRecentView,rvPDProductSize;
-    String cate_id,ipAddress,pro_id,rs,user_id;
+    String cate_id,ipAddress,pro_id,rs,user_id,weight;
     ViewPager vpPagerImgSlider;
     TabLayout tabIndicator;
     TextView txtCuttedPrice,txtProductOffers,txtPDPSize,txtPDStatusId,txtError;
@@ -138,6 +138,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         String pro_oprice = getIntent().getExtras().getString("pro_oprice");
         String pro_discount = getIntent().getExtras().getString("pro_discount");
         String pro_price = getIntent().getExtras().getString("pro_price");
+        weight = getIntent().getExtras().getString("weight");
         String pro_desc = getIntent().getExtras().getString("pro_desc");
         final String pro_quantity = getIntent().getExtras().getString("pro_quantity");
         String pro_date = getIntent().getExtras().getString("pro_date");
@@ -577,6 +578,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 {
                     String pd_user_id = user_id;
                     String pd_pro_id = pro_id;
+                    String pd_weight = weight;
                     String pd_quantity = txtPDQty.getText().toString();
                     String pd_size_name = txtPDPSize.getText().toString();
                     String pd_pro_price = txtProductPrice.getText().toString();
@@ -592,7 +594,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
                             txtError.setVisibility(View.GONE);
                             if(txtPDStatusId.getText().toString().equals("Available"))
                             {
-                                InsertCart(pd_user_id,pd_pro_id,pd_quantity,pd_pro_price,pd_size_name);
+                                InsertCart(pd_user_id,pd_pro_id,pd_quantity,pd_pro_price,pd_size_name,pd_weight);
 
                             }
                             else
@@ -608,7 +610,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
                         pd_size_name = "";
                         if(!pro_quantity.equals("0"))
                         {
-                            InsertCart(pd_user_id,pd_pro_id,pd_quantity,pd_pro_price,pd_size_name);
+                            InsertCart(pd_user_id,pd_pro_id,pd_quantity,pd_pro_price,pd_size_name,pd_weight);
                         }
                         else
                         {
@@ -736,13 +738,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
     }
 
-    private void InsertCart(String pd_user_id, String pd_pro_id, String pd_quantity, String pd_pro_price, String pd_size_name) {
+    private void InsertCart(String pd_user_id, String pd_pro_id, String pd_quantity, String pd_pro_price, String pd_size_name, String pd_weight) {
         final ProgressDialog dialog = new ProgressDialog(ProductDetailsActivity.this);
         dialog.setMessage("Loading...");
         dialog.setCancelable(true);
         dialog.show();
 
-        Call<Message> InsertCartCall = productDataService.getInsertCartData(pd_user_id,pd_pro_id,pd_quantity,pd_pro_price,pd_size_name);
+        Call<Message> InsertCartCall = productDataService.getInsertCartData(pd_user_id,pd_pro_id,pd_quantity,pd_pro_price,pd_size_name,pd_weight);
         InsertCartCall.enqueue(new Callback<Message>() {
             @Override
             public void onResponse(Call<Message> call, Response<Message> response) {

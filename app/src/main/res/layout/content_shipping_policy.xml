@@ -39,13 +39,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
-                android:text="For orders equal to or above Rs. 700 (Excluding COD charges, Shipping charges, Taxes or value reduced after application of coupons or any other offer), in which additional charges are applicable, the Rs. 69 shipping charge will be added to the shipping charges for all orders below or Equal Rs. 700 (with exclusions as above).\n" />
+                android:text="For orders equal to or above Rs. 500 (Excluding COD charges, Shipping charges, Taxes or value reduced after application of coupons or any other offer), in which additional charges are applicable, the Rs. 45 shipping charge will be added to the shipping charges for all orders below or Equal Rs. 500 (with exclusions as above).\n" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
-                android:text="The shipping charge applicable per quantity of the product can be checked by entering your pin code details on the product pages and the total shipping charge applicable on the order will be the sum of the charges for all chargeable product(s) in your order (+ Rs. 69 for orders below or Equal Rs. 700). The order level charge will be visible to you in the cart as well as when you enter the shipping address while you are checking out with your order.\n" />
+                android:text="The shipping charge applicable per quantity of the product can be checked by entering your pin code details on the product pages and the total shipping charge applicable on the order will be the sum of the charges for all chargeable product(s) in your order (+ Rs. 45 for orders below or Equal Rs. 500). The order level charge will be visible to you in the cart as well as when you enter the shipping address while you are checking out with your order.\n" />
 
             <TextView
                 android:layout_width="match_parent"

@@ -66,8 +66,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="20dp"
-                        android:text="Jams robart"/>
+                        android:paddingLeft="20dp"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_marginTop="30dp"
@@ -88,8 +87,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="20dp"
-                        android:text="Jemsrov97@gmail.com"/>
+                        android:paddingLeft="20dp"/>
 
                 </LinearLayout>
 
@@ -111,8 +109,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="20dp"
-                        android:text="4586428596"/>
+                        android:paddingLeft="20dp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -135,8 +132,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="20dp"
-                        android:text="Pramukh,kho,sargasan,gandhinagar,gujrat"/>
+                        android:paddingLeft="20dp"/>
 
                 </LinearLayout>
 

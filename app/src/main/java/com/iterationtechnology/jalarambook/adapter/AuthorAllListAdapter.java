@@ -59,7 +59,6 @@ public class AuthorAllListAdapter extends RecyclerView.Adapter<AuthorAllListAdap
 
         Picasso.with(context).load(RetrofitInstance.BASE_URL +author_img).into(viewHolder.ivAllCatImg);
 
-
         viewHolder.llCatListBg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
