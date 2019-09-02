@@ -40,7 +40,7 @@ public class DeliveryActivity extends AppCompatActivity {
     Button btnDeliveryChangeAddress,btnPlaceOrder,btnVerification;
     RecyclerView rvOrderList;
     EditText txtCouponCode;
-    String user_id,rs,firstname,lastname,email,contact,Address,City,State,Country,Pincode,TotalCartPrice,ShippingPrice;
+    String user_id,rs,firstname,lastname,email,contact,Address,City,State,Country,Pincode,TotalCartPrice,TotalCartWeight,ShippingPrice;
     ArrayList<Cart> cartProductListArray = new ArrayList<>();
     ArrayList<String> OrderProIdArray = new ArrayList<>();
     ArrayList<String> OrderProQtyArray = new ArrayList<>();
@@ -77,6 +77,7 @@ public class DeliveryActivity extends AppCompatActivity {
         Country = getIntent().getExtras().getString("country");
         Pincode = getIntent().getExtras().getString("pincode");
         TotalCartPrice = getIntent().getExtras().getString("TotalCartPrice");
+        TotalCartWeight = getIntent().getExtras().getString("TotalCartWeight");
         ShippingPrice = getIntent().getExtras().getString("ShippingPrice");
 
         txtOCartPrice = (TextView)findViewById(R.id.txtOCartPrice);
@@ -155,6 +156,7 @@ public class DeliveryActivity extends AppCompatActivity {
                 i.putExtra("country",Country);
                 i.putExtra("pincode",Pincode);
                 i.putExtra("TotalCartPrice",TotalCartPrice);
+                i.putExtra("TotalCartWeight",TotalCartWeight);
                 i.putExtra("ShippingPrice",ShippingPrice);
                 i.putExtra("discount_rate",discount_rate);
                 startActivity(i);
@@ -204,6 +206,7 @@ public class DeliveryActivity extends AppCompatActivity {
                 i.putExtra("OrderProSizeArray",OrderProSizeArray);
                 i.putExtra("OrderProPriceArray",OrderProPriceArray);
                 i.putExtra("TotalCartPrice",TotalCartPrice);
+                i.putExtra("TotalCartWeight",TotalCartWeight);
                 i.putExtra("ShippingPrice",ShippingPrice);
                 i.putExtra("coupon_code",coupon_code);
                 i.putExtra("discount_rate",discount_rate);

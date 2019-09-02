@@ -230,6 +230,7 @@ public class CartActivity extends AppCompatActivity
                             i.putExtra("email",email);
                             i.putExtra("contact",contact);
                             i.putExtra("TotalCartPrice",txtCartPrice.getText().toString());
+                            i.putExtra("TotalCartWeight",txtCartProWeight.getText().toString());
                             i.putExtra("ShippingPrice",txtShippingPrice.getText().toString());
                             startActivity(i);
                         }
@@ -245,6 +246,7 @@ public class CartActivity extends AppCompatActivity
                             i.putExtra("country",country);
                             i.putExtra("pincode",zipcode);
                             i.putExtra("TotalCartPrice",txtCartPrice.getText().toString());
+                            i.putExtra("TotalCartWeight",txtCartProWeight.getText().toString());
                             i.putExtra("ShippingPrice",txtShippingPrice.getText().toString());
                             startActivity(i);
                         }

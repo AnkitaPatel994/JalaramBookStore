@@ -30,7 +30,7 @@ public class AddAddressActivity extends AppCompatActivity {
     Button btnSave;
     CheckBox chAddShipping;
     AwesomeValidation awesomeValidation;
-    String id,firstname,lastname,email,contact,fullAddress,TotalCartPrice,ShippingPrice;
+    String id,firstname,lastname,email,contact,fullAddress,TotalCartPrice,TotalCartWeight,ShippingPrice;
     GetProductDataService productDataService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +50,7 @@ public class AddAddressActivity extends AppCompatActivity {
         email = getIntent().getExtras().getString("email");
         contact = getIntent().getExtras().getString("contact");
         TotalCartPrice = getIntent().getExtras().getString("TotalCartPrice");
+        TotalCartWeight = getIntent().getExtras().getString("TotalCartWeight");
         ShippingPrice = getIntent().getExtras().getString("ShippingPrice");
 
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
@@ -125,6 +126,7 @@ public class AddAddressActivity extends AppCompatActivity {
                                                 i.putExtra("country",txtCountry.getText().toString());
                                                 i.putExtra("pincode",txtPincode.getText().toString());
                                                 i.putExtra("TotalCartPrice",TotalCartPrice);
+                                                i.putExtra("TotalCartWeight",TotalCartWeight);
                                                 i.putExtra("ShippingPrice",ShippingPrice);
                                                 startActivity(i);
                                             }
@@ -158,6 +160,7 @@ public class AddAddressActivity extends AppCompatActivity {
                                     i.putExtra("country",txtCountry.getText().toString());
                                     i.putExtra("pincode",txtPincode.getText().toString());
                                     i.putExtra("TotalCartPrice",TotalCartPrice);
+                                    i.putExtra("TotalCartWeight",TotalCartWeight);
                                     i.putExtra("ShippingPrice",ShippingPrice);
                                     startActivity(i);
                                 }

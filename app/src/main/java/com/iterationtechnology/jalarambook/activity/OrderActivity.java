@@ -38,7 +38,7 @@ public class OrderActivity extends AppCompatActivity {
     ArrayList<String> OrderProQtyArray = new ArrayList<>();
     ArrayList<String> OrderProSizeArray = new ArrayList<>();
     ArrayList<String> OrderProPriceArray = new ArrayList<>();
-    String user_id,TotalCartPrice,ShippingPrice,coupon_code,discount_rate,rs,PaymentMethod,user_email;
+    String user_id,TotalCartPrice,TotalCartWeight,ShippingPrice,coupon_code,discount_rate,rs,PaymentMethod,user_email;
     TextView txtConPrice,txtConShippingPrice,txtConShippingCouponPrice,txtConTotalAmount,txtChange;
     RadioGroup rgPaymentMethod;
     RadioButton rbOnlinePayment;/*rbCashonDelivery,rbCreditCard,rbDebitCard;*/
@@ -74,6 +74,7 @@ public class OrderActivity extends AppCompatActivity {
 
         user_id = getIntent().getExtras().getString("user_id");
         TotalCartPrice = getIntent().getExtras().getString("TotalCartPrice");
+        TotalCartWeight = getIntent().getExtras().getString("TotalCartWeight");
         ShippingPrice = getIntent().getExtras().getString("ShippingPrice");
         discount_rate = getIntent().getExtras().getString("discount_rate");
         coupon_code = getIntent().getExtras().getString("coupon_code");
@@ -213,6 +214,7 @@ public class OrderActivity extends AppCompatActivity {
                     }
                 }
                 String order_total = TotalCartPrice;
+                String weight_total = TotalCartWeight;
 
                 String cod_charge = String.valueOf(change);
                 Log.d("order_pro",""+pro_id+"--"+order_price);
@@ -224,7 +226,7 @@ public class OrderActivity extends AppCompatActivity {
                 if (payment_method.equals("Cash on Delivery"))
                 {
                     dialog.show();
-                    InsertOrder(customer_id,user_email,pro_id,pro_quantity,shipping_method,payment_method,order_size,order_price,order_total,coupon_code,coupon_discount,cod_charge,total);
+                    InsertOrder(customer_id,user_email,pro_id,pro_quantity,shipping_method,payment_method,order_size,order_price,order_total,weight_total,coupon_code,coupon_discount,cod_charge,total);
                 }
                 else
                 {
@@ -291,6 +293,7 @@ public class OrderActivity extends AppCompatActivity {
                 }
             }
             String order_total = TotalCartPrice;
+            String weight_total = TotalCartWeight;
             String cod_charge = String.valueOf(change);
 
             Log.d("order_pr", "" + pro_id + "===" + pro_quantity + "===" + order_size + "===" + order_price);
@@ -299,12 +302,12 @@ public class OrderActivity extends AppCompatActivity {
             String total = String.valueOf(amount);
 
             dialog.show();
-            InsertOrder(customer_id, user_email, pro_id, pro_quantity, shipping_method, payment_method, order_size, order_price, order_total, coupon_code, coupon_discount, cod_charge, total);
+            InsertOrder(customer_id, user_email, pro_id, pro_quantity, shipping_method, payment_method, order_size, order_price, order_total,weight_total, coupon_code, coupon_discount, cod_charge, total);
         }
     }
 
-    private void InsertOrder(String customer_id, String user_email, String pro_id, String pro_quantity, String shipping_method, String payment_method, String order_size, String order_price, String order_total, String coupon_code, String coupon_discount, String cod_charge, String total) {
-        Call<Message> InsertOrderCall = productDataService.getInsertOrderData(customer_id,user_email,pro_id,pro_quantity,shipping_method,payment_method,order_size,order_price,order_total,coupon_code,coupon_discount,cod_charge,total);
+    private void InsertOrder(String customer_id, String user_email, String pro_id, String pro_quantity, String shipping_method, String payment_method, String order_size, String order_price, String order_total, String weight_total, String coupon_code, String coupon_discount, String cod_charge, String total) {
+        Call<Message> InsertOrderCall = productDataService.getInsertOrderData(customer_id,user_email,pro_id,pro_quantity,shipping_method,payment_method,order_size,order_price,order_total,weight_total,coupon_code,coupon_discount,cod_charge,total);
         InsertOrderCall.enqueue(new Callback<Message>() {
             @Override
             public void onResponse(Call<Message> call, Response<Message> response) {

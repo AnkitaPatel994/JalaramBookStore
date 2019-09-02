@@ -25,7 +25,7 @@ import retrofit2.Response;
 
 public class AddShippingAddressActivity extends AppCompatActivity {
 
-    String user_id,firstname,lastname,email,contact,Address,City,State,Country,Pincode,fullAddress,TotalCartPrice,ShippingPrice;
+    String user_id,firstname,lastname,email,contact,Address,City,State,Country,Pincode,fullAddress,TotalCartPrice,TotalCartWeight,ShippingPrice;
     EditText txtShippingName,txtShippingAddress,txtShippingCity,txtShippingState,txtShippingCountry,txtShippingPincode;
     Button btnShippingSave;
     AwesomeValidation awesomeValidation;
@@ -54,6 +54,7 @@ public class AddShippingAddressActivity extends AppCompatActivity {
         Country = getIntent().getExtras().getString("country");
         Pincode = getIntent().getExtras().getString("pincode");
         TotalCartPrice = getIntent().getExtras().getString("TotalCartPrice");
+        TotalCartWeight = getIntent().getExtras().getString("TotalCartWeight");
         ShippingPrice = getIntent().getExtras().getString("ShippingPrice");
 
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
@@ -106,6 +107,7 @@ public class AddShippingAddressActivity extends AppCompatActivity {
                             i.putExtra("country", txtShippingCountry.getText().toString());
                             i.putExtra("pincode", txtShippingPincode.getText().toString());
                             i.putExtra("TotalCartPrice", TotalCartPrice);
+                            i.putExtra("TotalCartWeight", TotalCartWeight);
                             i.putExtra("ShippingPrice", ShippingPrice);
                             startActivity(i);
                         }

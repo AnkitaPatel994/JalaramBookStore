@@ -144,6 +144,7 @@ public interface GetProductDataService {
                                      @Field("order_size") String order_size,
                                      @Field("order_price") String order_price,
                                      @Field("order_total") String order_total,
+                                     @Field("weight_total") String weight_total,
                                      @Field("coupon_code") String coupon_code,
                                      @Field("coupon_discount") String coupon_discount,
                                      @Field("cod_charge") String cod_charge,
