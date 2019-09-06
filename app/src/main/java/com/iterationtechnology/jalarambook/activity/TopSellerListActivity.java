@@ -6,46 +6,44 @@ import android.content.Intent;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
+import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.format.Formatter;
 import android.text.style.TextAppearanceSpan;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.daimajia.slider.library.Animations.DescriptionAnimation;
-import com.daimajia.slider.library.SliderLayout;
-import com.daimajia.slider.library.SliderTypes.BaseSliderView;
-import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.iterationtechnology.jalarambook.R;
-import com.iterationtechnology.jalarambook.adapter.AuthorListAdapter;
 import com.iterationtechnology.jalarambook.adapter.BestSellingProductListAdapter;
-import com.iterationtechnology.jalarambook.adapter.CategoryListAdapter;
-import com.iterationtechnology.jalarambook.model.Author;
-import com.iterationtechnology.jalarambook.model.AuthorList;
+import com.iterationtechnology.jalarambook.adapter.ProductListAdapter;
 import com.iterationtechnology.jalarambook.model.BestSellingList;
 import com.iterationtechnology.jalarambook.model.Cart;
 import com.iterationtechnology.jalarambook.model.CartList;
-import com.iterationtechnology.jalarambook.model.Category;
-import com.iterationtechnology.jalarambook.model.CategoryList;
 import com.iterationtechnology.jalarambook.model.Product;
-import com.iterationtechnology.jalarambook.model.Slider;
-import com.iterationtechnology.jalarambook.model.SliderList;
 import com.iterationtechnology.jalarambook.network.GetProductDataService;
 import com.iterationtechnology.jalarambook.network.RetrofitInstance;
 import com.iterationtechnology.jalarambook.network.SessionManager;
@@ -57,37 +55,32 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class TopSellerListActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener{
 
-    SliderLayout slBannerSlider;
-    ArrayList<Slider> sliderListArray = new ArrayList<>();
-    ArrayList<String> sliderImgArray = new ArrayList<>();
-    RecyclerView rvCategoryList,rvAuthorList,rvSellerProduct;
-    ArrayList<Category> categoryListArray = new ArrayList<>();
-    ArrayList<Author> AuthorListArray = new ArrayList<>();
-    ArrayList<Product> BestSellingListArray = new ArrayList<>();
-    ArrayList<Cart> cartProductListArray = new ArrayList<>();
+    RecyclerView rvTopSellerList;
+    ArrayList<Product> TopSellerListArray = new ArrayList<>();
     SessionManager session;
     int flag = 0;
-    String ip_address,user_id,user_name;
-    GetProductDataService productDataService;
     TextView textCartItemCount;
     int mCartItemCount = 1;
+    ArrayList<Cart> cartProductListArray = new ArrayList<>();
+    GetProductDataService productDataService;
+    String ip_address,user_id,user_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setContentView(R.layout.activity_top_seller_list);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        categoryListArray.clear();
-        AuthorListArray.clear();
-        BestSellingListArray.clear();
+        TopSellerListArray.clear();
 
-        session = new SessionManager(HomeActivity.this);
+        session = new SessionManager(TopSellerListActivity.this);
         flag = session.checkLogin();
+
+        productDataService = RetrofitInstance.getRetrofitInstance().create(GetProductDataService.class);
 
         HashMap<String,String> user = session.getUserDetails();
         user_id = user.get(SessionManager.user_id);
@@ -101,6 +94,10 @@ public class HomeActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
+        @SuppressLint("WifiManagerLeak")
+        WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
+        ip_address = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
+
         Menu menu = navigationView.getMenu();
 
         MenuItem SocialMediaLinks = menu.findItem(R.id.nvSocialMediaLinks);
@@ -113,10 +110,10 @@ public class HomeActivity extends AppCompatActivity
         quick.setSpan(new TextAppearanceSpan(this, R.style.NavigationTitle), 0, quick.length(), 0);
         QuickLinks.setTitle(quick);
 
-        MenuItem SizeLinks = menu.findItem(R.id.nvSize);
-        SpannableString vSize = new SpannableString(SizeLinks.getTitle());
+        MenuItem NvSize = menu.findItem(R.id.nvSize);
+        SpannableString vSize = new SpannableString(NvSize.getTitle());
         vSize.setSpan(new TextAppearanceSpan(this, R.style.NavigationTitleSize), 0, vSize.length(), 0);
-        SizeLinks.setTitle(vSize);
+        NvSize.setTitle(vSize);
 
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -124,19 +121,16 @@ public class HomeActivity extends AppCompatActivity
         TextView txt_login = (TextView)headerview.findViewById(R.id.txt_login);
         LinearLayout nav_header_ll = (LinearLayout)headerview.findViewById(R.id.nav_header_ll);
 
-        productDataService = RetrofitInstance.getRetrofitInstance().create(GetProductDataService.class);
-
         if (flag == 1)
         {
             txt_login.setText(user_name);
             nav_header_ll.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent i = new Intent(HomeActivity.this, MyProfileActivity.class);
+                    Intent i = new Intent(TopSellerListActivity.this, MyProfileActivity.class);
                     startActivity(i);
                 }
             });
-
         }
         else if (flag == 0)
         {
@@ -144,180 +138,21 @@ public class HomeActivity extends AppCompatActivity
             nav_header_ll.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent i = new Intent(HomeActivity.this, SignInActivity.class);
+                    Intent i = new Intent(TopSellerListActivity.this, SignInActivity.class);
                     startActivity(i);
                 }
             });
-
         }
 
-        @SuppressLint("WifiManagerLeak")
-        WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
-        ip_address = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
+        rvTopSellerList = (RecyclerView)findViewById(R.id.rvTopSellerList);
+        rvTopSellerList.setHasFixedSize(true);
 
-        /*================== Slider ========================*/
-        slBannerSlider = (SliderLayout)findViewById(R.id.slBannerSlider);
+        RecyclerView.LayoutManager manager = new GridLayoutManager(getApplicationContext(),2);
+        rvTopSellerList.setLayoutManager(manager);
 
-        Call<SliderList> sliderListCall = productDataService.getSliderData();
+        Call<BestSellingList> topSellingListCall = productDataService.getBestSellingData();
 
-        sliderListCall.enqueue(new Callback<SliderList>() {
-            @Override
-            public void onResponse(Call<SliderList> call, Response<SliderList> response) {
-
-                String Status = response.body().getStatus();
-                String message = response.body().getMessage();
-                if (Status.equals("1"))
-                {
-                    Log.d("message",""+message);
-                    sliderListArray = response.body().getSliderList();
-
-                    for (int i=0;i<sliderListArray.size();i++)
-                    {
-                        String banner = sliderListArray.get(i).getBanner();
-                        String banner_path = RetrofitInstance.BASE_URL +banner;
-                        sliderImgArray.add(banner_path);
-                    }
-
-                    for (String name : sliderImgArray) {
-                        DefaultSliderView textSliderView = new DefaultSliderView(HomeActivity.this);
-                        // initialize a SliderLayout
-                        textSliderView
-                                .image(String.valueOf(name))
-                                .setScaleType(BaseSliderView.ScaleType.Fit)
-                                .setOnSliderClickListener(new BaseSliderView.OnSliderClickListener() {
-                                    @Override
-                                    public void onSliderClick(BaseSliderView slider) {
-                                        slBannerSlider.startAutoCycle();
-                                    }
-                                });
-
-                        slBannerSlider.addSlider(textSliderView);
-                    }
-                    slBannerSlider.setCustomAnimation(new DescriptionAnimation());
-                    slBannerSlider.setDuration(5000);
-                }
-                else
-                {
-                    Log.d("message",""+message);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<SliderList> call, Throwable t) {
-                Toast.makeText(HomeActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        /*================= btn view all ==============*/
-        Button btnViewAllCat = (Button)findViewById(R.id.btnViewAllCat);
-        btnViewAllCat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(HomeActivity.this, CategoryListActivity.class);
-                startActivity(i);
-            }
-        });
-
-        /*================= btn view Top Seller ==============*/
-        Button btnViewTopSeller = (Button)findViewById(R.id.btnViewTopSeller);
-        btnViewTopSeller.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(HomeActivity.this, TopSellerListActivity.class);
-                startActivity(i);
-            }
-        });
-
-        /*================= btn view all Author ==============*/
-        Button btnViewAllAuthor = (Button)findViewById(R.id.btnViewAllAuthor);
-        btnViewAllAuthor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(HomeActivity.this, AuthorListActivity.class);
-                startActivity(i);
-            }
-        });
-
-        /*================== Category ========================*/
-        rvCategoryList = (RecyclerView)findViewById(R.id.rvCategoryList);
-        rvCategoryList.setHasFixedSize(true);
-
-        RecyclerView.LayoutManager manager = new GridLayoutManager(getApplicationContext(),3);
-        rvCategoryList.setLayoutManager(manager);
-
-        Call<CategoryList> categoryListCall = productDataService.getCategoryData();
-
-        categoryListCall.enqueue(new Callback<CategoryList>() {
-            @Override
-            public void onResponse(Call<CategoryList> call, Response<CategoryList> response) {
-
-                String Status = response.body().getStatus();
-                String message = response.body().getMessage();
-                if (Status.equals("1"))
-                {
-                    Log.d("message",""+message);
-                    categoryListArray = response.body().getCategoryList();
-                    CategoryListAdapter categoryListAdapter = new CategoryListAdapter(HomeActivity.this,categoryListArray);
-                    rvCategoryList.setAdapter(categoryListAdapter);
-                }
-                else
-                {
-                    Log.d("message",""+message);
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<CategoryList> call, Throwable t) {
-                Toast.makeText(HomeActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        /*================= Author List =================*/
-        rvAuthorList = (RecyclerView)findViewById(R.id.rvAuthorList);
-        rvAuthorList.setHasFixedSize(true);
-
-        RecyclerView.LayoutManager manager2 = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.HORIZONTAL,false);
-        rvAuthorList.setLayoutManager(manager2);
-
-        Call<AuthorList> authorListCall = productDataService.getAuthorData();
-
-        authorListCall.enqueue(new Callback<AuthorList>() {
-            @Override
-            public void onResponse(Call<AuthorList> call, Response<AuthorList> response) {
-
-                String Status = response.body().getStatus();
-                String message = response.body().getMessage();
-                if (Status.equals("1"))
-                {
-                    Log.d("message",""+message);
-                    AuthorListArray = response.body().getAuthorList();
-                    AuthorListAdapter authorListAdapter = new AuthorListAdapter(HomeActivity.this,AuthorListArray);
-                    rvAuthorList.setAdapter(authorListAdapter);
-                }
-                else
-                {
-                    Log.d("message",""+message);
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<AuthorList> call, Throwable t) {
-                Toast.makeText(HomeActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        /*================= Best Selling Product List =================*/
-        rvSellerProduct = (RecyclerView)findViewById(R.id.rvSellerProduct);
-        rvSellerProduct.setHasFixedSize(true);
-
-        RecyclerView.LayoutManager manager3 = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.HORIZONTAL,false);
-        rvSellerProduct.setLayoutManager(manager3);
-
-        Call<BestSellingList> bestSellingListCall = productDataService.getBestSellingData();
-
-        bestSellingListCall.enqueue(new Callback<BestSellingList>() {
+        topSellingListCall.enqueue(new Callback<BestSellingList>() {
             @Override
             public void onResponse(Call<BestSellingList> call, Response<BestSellingList> response) {
 
@@ -326,9 +161,9 @@ public class HomeActivity extends AppCompatActivity
                 if (Status.equals("1"))
                 {
                     Log.d("message",""+message);
-                    BestSellingListArray = response.body().getBestsellingList();
-                    BestSellingProductListAdapter bestSellingProductListAdapter = new BestSellingProductListAdapter(HomeActivity.this,BestSellingListArray,ip_address);
-                    rvSellerProduct.setAdapter(bestSellingProductListAdapter);
+                    TopSellerListArray = response.body().getBestsellingList();
+                    ProductListAdapter bestSellingProductListAdapter = new ProductListAdapter(TopSellerListActivity.this,TopSellerListArray,ip_address);
+                    rvTopSellerList.setAdapter(bestSellingProductListAdapter);
                 }
                 else
                 {
@@ -338,7 +173,7 @@ public class HomeActivity extends AppCompatActivity
 
             @Override
             public void onFailure(Call<BestSellingList> call, Throwable t) {
-                Toast.makeText(HomeActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TopSellerListActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -348,6 +183,7 @@ public class HomeActivity extends AppCompatActivity
     protected void onRestart() {
         super.onRestart();
         startActivity(getIntent());
+        finish();
     }
 
     @Override
@@ -358,7 +194,7 @@ public class HomeActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
-        finishAffinity();
+
     }
 
     @Override
@@ -428,17 +264,13 @@ public class HomeActivity extends AppCompatActivity
             mCartItemCount = 0;
             textCartItemCount.setVisibility(View.GONE);
         }
-
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.menu_search)
         {
             Intent i = new Intent(getApplicationContext(), SearchActivity.class);
@@ -459,7 +291,12 @@ public class HomeActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_cart)
+        if (id == R.id.nav_home)
+        {
+            Intent i = new Intent(getApplicationContext(), HomeActivity.class);
+            startActivity(i);
+        }
+        else if (id == R.id.nav_cart)
         {
             Intent i = new Intent(getApplicationContext(),CartActivity.class);
             startActivity(i);
@@ -581,6 +418,7 @@ public class HomeActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
     private boolean MyStartActivity(Intent i) {
         try
         {

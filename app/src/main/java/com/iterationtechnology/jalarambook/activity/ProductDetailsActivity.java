@@ -739,6 +739,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     }
 
     private void InsertCart(String pd_user_id, String pd_pro_id, String pd_quantity, String pd_pro_price, String pd_size_name, String pd_weight) {
+
         final ProgressDialog dialog = new ProgressDialog(ProductDetailsActivity.this);
         dialog.setMessage("Loading...");
         dialog.setCancelable(true);

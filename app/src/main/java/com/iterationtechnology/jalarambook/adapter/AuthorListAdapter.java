@@ -40,13 +40,13 @@ public class AuthorListAdapter extends RecyclerView.Adapter<AuthorListAdapter.Vi
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
 
-        final String Author_id = authorListArray.get(position).getAuthor_id();
-        final String Author_name = authorListArray.get(position).getAuthor_name();
-        String Author_img = authorListArray.get(position).getAuthor_img();
+        final String author_id = authorListArray.get(position).getAuthor_id();
+        final String author_name = authorListArray.get(position).getAuthor_name();
+        String author_img = authorListArray.get(position).getAuthor_img();
 
-        viewHolder.txtAuthorName.setText(Author_name);
+        viewHolder.txtAuthorName.setText(author_name);
 
-        Picasso.with(context).load(RetrofitInstance.BASE_URL +Author_img).into(viewHolder.ivAuthorImg);
+        Picasso.with(context).load(RetrofitInstance.BASE_URL +author_img).into(viewHolder.ivAuthorImg);
 
 
         viewHolder.llAuthorList.setOnClickListener(new View.OnClickListener() {
@@ -56,8 +56,8 @@ public class AuthorListAdapter extends RecyclerView.Adapter<AuthorListAdapter.Vi
                 i.putExtra("pro_name","*");
                 i.putExtra("cate_id","*");
                 i.putExtra("cate_name","*");
-                i.putExtra("Author_id",Author_id);
-                i.putExtra("Author_name",Author_name);
+                i.putExtra("author_id",author_id);
+                i.putExtra("author_name",author_name);
                 i.putExtra("min_price","1");
                 i.putExtra("max_price","15000");
                 context.startActivity(i);

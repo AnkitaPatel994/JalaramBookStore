@@ -70,8 +70,8 @@
     <string name="title_activity_search">Search</string>
 
     <string name="reload"><u>Reload page</u></string>
-    <string name="title_activity_mobile_otp">MobileOTPActivity</string>
-    <string name="title_activity_email_otp">EmailOTPActivity</string>
+    <string name="title_activity_mobile_otp">Mobile Verification</string>
+    <string name="title_activity_email_otp">Email Verification</string>
     <string name="title_activity_contact_us">Contact Us</string>
 
     <string name="address">Shop No A 4, Pramukh Arcade 2, Kudasan, Gandhinagar-Gujarat - 382421, Below Hotel City In</string>
@@ -105,5 +105,6 @@
 
     <string name="RC">For Refund &amp; Cancellation Order Query. Please Contact to Supporting Department \n\nEmail Address:- <b>info@jalarambookstore.com</b></string>
     <string name="RP">At Jalaram Book Store, our aim is to provide 100% satisfaction to our customers. If for any reason you are not satisfied with the product, we are here to help. Following are the details of the return policy that is applicable for all the items sold on Jalaram Book Store:\n\nFor Return Purchase Order Query. Please Contact to Supporting Department \nEmail Address:- <b>info@jalarambookstore.com</b>\nContact Number:- <b>+8141738284</b>\n\n</string>
+    <string name="title_activity_top_seller_list">TopSellerListActivity</string>
 
 </resources>

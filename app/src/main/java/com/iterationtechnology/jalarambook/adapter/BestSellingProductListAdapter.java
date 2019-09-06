@@ -118,13 +118,14 @@ public class BestSellingProductListAdapter extends RecyclerView.Adapter<BestSell
                 i.putExtra("pro_date",pro_date);
                 i.putExtra("rating",rating);
                 context.startActivity(i);
+
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return bestSellingListArray.size();
+        return 10;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

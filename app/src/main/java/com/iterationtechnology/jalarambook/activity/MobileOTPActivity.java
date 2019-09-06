@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -14,10 +15,13 @@ import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.iterationtechnology.jalarambook.R;
 import com.iterationtechnology.jalarambook.model.SendOtp;
 import com.iterationtechnology.jalarambook.network.GetProductDataService;
 import com.iterationtechnology.jalarambook.network.RetrofitInstance;
+
+import java.util.regex.Pattern;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -50,7 +54,7 @@ public class MobileOTPActivity extends AppCompatActivity {
         txtMMobileNo = (EditText)findViewById(R.id.txtMMobileNo);
         txtMOTP = (EditText)findViewById(R.id.txtMOTP);
 
-        awesomeValidation.addValidation(this, R.id.txtMMobileNo, "^[2-9]{2}[0-9]{8}$", R.string.mobileNo);
+        awesomeValidation.addValidation(this, R.id.txtMMobileNo, "^[0-9]{10}$", R.string.mobileNo);
 
         btnMSubmitOTP = (Button) findViewById(R.id.btnMSubmitOTP);
         btnMResendOTP = (Button) findViewById(R.id.btnMResendOTP);
