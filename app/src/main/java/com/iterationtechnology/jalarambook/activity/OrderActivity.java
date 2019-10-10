@@ -47,6 +47,7 @@ public class OrderActivity extends AppCompatActivity {
     SessionManager session;
     int change,amount;
     private ProgressDialog dialog;
+    String email,flName,contact,Address,City,State,Country,Pincode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +83,19 @@ public class OrderActivity extends AppCompatActivity {
         OrderProQtyArray = getIntent().getExtras().getStringArrayList("OrderProQtyArray");
         OrderProSizeArray = getIntent().getExtras().getStringArrayList("OrderProSizeArray");
         OrderProPriceArray = getIntent().getExtras().getStringArrayList("OrderProPriceArray");
+
+        String firstname = getIntent().getExtras().getString("firstname");
+        String lastname = getIntent().getExtras().getString("lastname");
+
+        flName = firstname+" "+lastname;
+
+        email = getIntent().getExtras().getString("email");
+        contact = getIntent().getExtras().getString("contact");
+        Address = getIntent().getExtras().getString("address");
+        City = getIntent().getExtras().getString("city");
+        State = getIntent().getExtras().getString("state");
+        Country = getIntent().getExtras().getString("country");
+        Pincode = getIntent().getExtras().getString("pincode");
 
         Log.d("discount_rate",""+discount_rate);
 
@@ -237,12 +251,18 @@ public class OrderActivity extends AppCompatActivity {
                     intent.putExtra(AvenuesParams.ORDER_ID, ServiceUtility.chkNull(randomNum + "").toString().trim());
                     intent.putExtra(AvenuesParams.CURRENCY, ServiceUtility.chkNull(Constants.CURRENCEY).toString().trim());
                     intent.putExtra(AvenuesParams.AMOUNT, ServiceUtility.chkNull(total).toString().trim());
-                    //intent.putExtra(AvenuesParams.AMOUNT, ServiceUtility.chkNull("1").toString().trim());
                     intent.putExtra(AvenuesParams.REDIRECT_URL, ServiceUtility.chkNull(Constants.REDIRECT_URL).toString().trim());
                     intent.putExtra(AvenuesParams.CANCEL_URL, ServiceUtility.chkNull(Constants.CANCEL_URL).toString().trim());
                     intent.putExtra(AvenuesParams.RSA_KEY_URL, ServiceUtility.chkNull(Constants.RSA_KEY_URL).toString().trim());
+                    intent.putExtra(AvenuesParams.BILLING_NAME, ServiceUtility.chkNull(flName).toString().trim());
+                    intent.putExtra(AvenuesParams.BILLING_ADDRESS, ServiceUtility.chkNull(Address).toString().trim());
+                    intent.putExtra(AvenuesParams.BILLING_ZIP, ServiceUtility.chkNull(Pincode).toString().trim());
+                    intent.putExtra(AvenuesParams.BILLING_CITY, ServiceUtility.chkNull(City).toString().trim());
+                    intent.putExtra(AvenuesParams.BILLING_STATE, ServiceUtility.chkNull(State).toString().trim());
+                    intent.putExtra(AvenuesParams.BILLING_COUNTRY, ServiceUtility.chkNull("India").toString().trim());
+                    intent.putExtra(AvenuesParams.BILLING_TEL, ServiceUtility.chkNull(contact).toString().trim());
+                    intent.putExtra(AvenuesParams.BILLING_EMAIL, ServiceUtility.chkNull(email).toString().trim());
                     startActivityForResult(intent, 1);
-
                 }
 
             }

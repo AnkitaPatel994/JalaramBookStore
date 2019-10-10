@@ -210,6 +210,15 @@ public class DeliveryActivity extends AppCompatActivity {
                 i.putExtra("ShippingPrice",ShippingPrice);
                 i.putExtra("coupon_code",coupon_code);
                 i.putExtra("discount_rate",discount_rate);
+                i.putExtra("firstname",firstname);
+                i.putExtra("lastname",lastname);
+                i.putExtra("email",email);
+                i.putExtra("contact",contact);
+                i.putExtra("address",Address);
+                i.putExtra("city",City);
+                i.putExtra("state",State);
+                i.putExtra("country",Country);
+                i.putExtra("pincode",Pincode);
                 startActivity(i);
             }
         });

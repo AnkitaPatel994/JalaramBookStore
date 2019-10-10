@@ -127,6 +127,7 @@ public class MyProfileActivity extends AppCompatActivity
                 finish();
             }
         });
+
         GetProductDataService productDataService = RetrofitInstance.getRetrofitInstance().create(GetProductDataService.class);
         Call<Customer> customerCall = productDataService.getCustomerData(user_id);
         customerCall.enqueue(new Callback<Customer>() {
